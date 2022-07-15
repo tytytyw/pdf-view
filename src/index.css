@@ -9,6 +9,11 @@ p {
   margin: 0;
 }
 
+svg,
+path {
+  pointer-events: none;
+}
+
 a {
   font-family: inherit;
   color: inherit;

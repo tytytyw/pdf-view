@@ -1,13 +1,15 @@
-import React, { useState, useEffect } from 'react'
+/* eslint-disable jsx-a11y/anchor-is-valid */
+import React, { useState, useEffect, useRef } from 'react'
 import styles from './Header.module.sass'
 import { ReactComponent as DownloadIcon } from "../../assets/download.svg";
-import { ReactComponent as PrintIcon } from "../../assets/print.svg";
 import { ReactComponent as RotateIcon } from "../../assets/rotate.svg";
 import classNames from 'classnames';
+import FileSaver from 'file-saver'
 
-const Header = ({ pageNumber, numPages, scale, setscale, headerRef }) => {
+const Header = ({ pageNumber, numPages, scale, setscale, headerRef, setrotate }) => {
 
     const [scaleValue, setscaleValue] = useState(Math.round(scale * 100))
+
 
     const scaleInputHandler = (e) => {
         let newValue = +e.target.value.replace(/\D/g, '');
@@ -31,16 +33,25 @@ const Header = ({ pageNumber, numPages, scale, setscale, headerRef }) => {
         })
     }
 
+    const rotateHandler = () => {
+        setrotate(prev => prev >= 270 ? 0 : prev + 90)
+    }
+
+    const downloadFile = () => {
+
+        FileSaver.saveAs(document.PDFdata, document.PDFname);
+    }
+
+
     useEffect(() => {
         setscale((scaleValue >= 500 ? 500 : scaleValue) / 100)
     }, [scaleValue])
 
-
     return (
         <div className={styles.Header} ref={headerRef}>
             <div className={styles.pages}>
-                <div className={styles.pageCurrent}>{pageNumber}</div>
-                <span className={styles.slash}>/</span>
+                <div className={styles.pageCurrent}>Страниц:</div>
+                <span className={styles.slash}> </span>
                 <div className={styles.pageLast}>{numPages}</div>
             </div>
             <div className={classNames(styles.scale)}>
@@ -61,13 +72,13 @@ const Header = ({ pageNumber, numPages, scale, setscale, headerRef }) => {
             </div>
 
             <div className={styles.buttonsWrapper}>
-                <div className={classNames(styles.rotate, styles.iconWrapper)}>
+                <div
+                    className={classNames(styles.rotate, styles.iconWrapper)}
+                    onClick={rotateHandler}
+                >
                     <RotateIcon />
                 </div>
-                <div className={classNames(styles.print, styles.iconWrapper)}>
-                    <PrintIcon />
-                </div>
-                <div className={classNames(styles.download, styles.iconWrapper)}>
+                <div className={classNames(styles.download, styles.iconWrapper)} onClick={downloadFile}>
                     <DownloadIcon />
                 </div>
             </div>
