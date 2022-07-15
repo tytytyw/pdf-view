@@ -44,7 +44,7 @@ function App() {
 	}, [numPages])
 
 
-	const pages = useCallback(() =>
+	const pages = () =>
 		arrayPages.map((pageNumber) => <Page
 			key={pageNumber}
 			className={styles.Page}
@@ -52,7 +52,7 @@ function App() {
 			pageNumber={pageNumber}
 			rotate={rotate}
 			width={documentRef?.current.offsetWidth * 90 / 100}
-		/>), [arrayPages, scale, rotate])
+		/>)
 
 	return (
 		<div className={styles.App}>
