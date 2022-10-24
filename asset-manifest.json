@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/pdf-view/static/css/main.b19954dd.css",
+    "main.js": "/pdf-view/static/js/main.c1fab02c.js",
+    "index.html": "/pdf-view/index.html",
+    "static/media/download.svg": "/pdf-view/static/media/download.b455977b907a6106a4e1f3f836da8d76.svg",
+    "static/media/rotate.svg": "/pdf-view/static/media/rotate.23ba91d9d55580ec18ca3ac1d68d6ae7.svg",
+    "main.b19954dd.css.map": "/pdf-view/static/css/main.b19954dd.css.map",
+    "main.c1fab02c.js.map": "/pdf-view/static/js/main.c1fab02c.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.b19954dd.css",
+    "static/js/main.c1fab02c.js"
+  ]
+}
